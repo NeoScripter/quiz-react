@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import iconError from '../assets/images/iconError.svg';
-import iconIncorrect from '../assets/images/icon-incorrect.svg';
-import iconCorrect from '../assets/images/icon-correct.svg';
-
+import iconError from "../assets/images/iconError.svg";
+import iconIncorrect from "../assets/images/icon-incorrect.svg";
+import iconCorrect from "../assets/images/icon-correct.svg";
 
 function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleRestartQuiz, quizImage }) {
     const currentQuestion = quiz.questions[currentQuestionIndex];
@@ -63,13 +62,9 @@ function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleR
     const iconToDisplay = (option) => {
         if (submitted) {
             if (option === currentQuestion.answer) {
-                return (
-                    <img src={iconCorrect} alt="green checkmark" className="ml-auto"/>
-                );
+                return <img src={iconCorrect} alt="green checkmark" className="ml-auto" />;
             } else if (option === selectedAnswer) {
-                return (
-                    <img src={iconIncorrect} alt="red cross" className="ml-auto"/>
-                );
+                return <img src={iconIncorrect} alt="red cross" className="ml-auto" />;
             } else {
                 return null;
             }
@@ -80,13 +75,13 @@ function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleR
     const rightAnswers = answers.filter((answer) => answer === true).length;
     if (currentQuestionIndex >= quiz.questions.length) {
         return (
-            <div>
-                <div>
+            <div className="md:flex justify-between md:w-full">
+                <div className="md:w-1/2">
                     <h1 className="text-4xl mb-8 bold-ff">
                         <span className="font-normal light-ff">Quiz completed</span> <br></br> You scored...
                     </h1>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-5 field-bg p-6 rounded-lg mb-8">
+                <div className="flex flex-col justify-center items-center gap-5 field-bg p-6 rounded-lg md:w-1/2">
                     <div className="flex gap-4 items-center">
                         <div className="w-10 p-1 rounded-lg" style={{ backgroundColor: quiz.bgColor }}>
                             <img className="w-8 h-8" src={quizImage} alt={quiz.title} />
@@ -95,20 +90,20 @@ function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleR
                     </div>
                     <p className="bold-ff text-8xl">{rightAnswers}</p>
                     <p className="italic-ff text-xl grey-text-clr text-center">out of {totalAnswers}</p>
+                    <button
+                        onClick={handleRestartQuiz}
+                        className="medium-ff p-4 cursor-pointer flex items-center justify-center gap-5 submit-btn-bg rounded-lg text-white w-full"
+                    >
+                        Play Again
+                    </button>
                 </div>
-                <button
-                    onClick={handleRestartQuiz}
-                    className="medium-ff p-4 cursor-pointer flex items-center justify-center gap-5 submit-btn-bg rounded-lg text-white w-full"
-                >
-                    Play Again
-                </button>
             </div>
         );
     }
 
     const answerOptions = ["A", "B", "C", "D"];
     return (
-        <div>
+        <div className="md:w-1/2">
             <div className="flex flex-col gap-4">
                 {currentQuestion.options.map((option, index) => (
                     <div
@@ -125,7 +120,7 @@ function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleR
                         >
                             {answerOptions[index]}
                         </div>
-                        <p>{option}</p>
+                        <p className="text-sm">{option}</p>
                         {iconToDisplay(option)}
                     </div>
                 ))}
@@ -137,10 +132,10 @@ function Quiz({ quiz, currentQuestionIndex, handleNextQuestion, answers, handleR
                 </button>
                 {showError && (
                     <div className="flex items-center gap-2 w-max mx-auto mt-2">
-                        <img src={iconError} alt="red cross"/>
-                        <p className="text-red-600 text-lg">Please select an answer</p>
+                        <img src={iconError} alt="red cross" />
+                        <p className="text-red-600 text-base">Please select an answer</p>
                     </div>
-                    )}
+                )}
             </div>
         </div>
     );

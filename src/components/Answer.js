@@ -6,7 +6,7 @@ function Answer({ title, onClick, image, bgColor }) {
             <div className="w-10 p-1 rounded-lg" style={{backgroundColor: bgColor}}>
                 <img src={image} alt={title} />
             </div>
-            <p className="text-lg">{title}</p>
+            <p className="text-base">{title}</p>
         </div>
     );
 }
