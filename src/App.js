@@ -32,6 +32,11 @@ function App() {
         setCurrentQuestionIndex((prev) => prev + 1);
     }
 
+    function handleRestartQuiz() {
+        setCurrentQuestionIndex(0);
+        setAnswers([]);
+    }
+
     const progressBarWidth = currentQuiz ? (100 / currentQuiz.questions.length) * currentQuestionIndex : 0;
     return (
         <div className="mx-auto p-6 max-w-md">
@@ -55,12 +60,13 @@ function App() {
                         <p className="italic-ff grey-text-clr">Pick a subject to get started.</p>
                     </>
                 ) : (
-                    <>
+                    (currentQuestionIndex < currentQuiz.questions.length) &&
+                        <>
                         <p className="text-sm italic-ff grey-text-clr mb-2">
                             Question {currentQuestionIndex + 1} of {currentQuiz.questions.length}
                         </p>
                         <p>{currentQuiz.questions[currentQuestionIndex].question}</p>
-                        <div className="bg-white w-full h-3 rounded-full p-0.5 mt-4">
+                        <div className="field-bg w-full h-3 rounded-full p-0.5 mt-4">
                             <div
                                 className="h-full w-1/2 rounded-full purple-bg"
                                 style={{ width: `${progressBarWidth}%` }}
@@ -75,6 +81,8 @@ function App() {
                     currentQuestionIndex={currentQuestionIndex}
                     handleNextQuestion={handleNextQuestion}
                     answers={answers}
+                    handleRestartQuiz={handleRestartQuiz}
+                    quizImage={imageMap[currentQuiz.icon]}
                 />
             ) : (
                 <Menu handleQuizSelect={handleQuizSelect} quizzesData={quizzesData} imageMap={imageMap} />

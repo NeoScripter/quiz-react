@@ -38,6 +38,8 @@
     --right-answer-clr: #26D782;
     --wrong-answer-clr: #EE5454;
     --bg-color: #F4F6FA;
+    --text-color: #000;
+    --field-bg: #fff;
 
     --switch-height: 20px;
     --switch-width: 40px;
@@ -45,9 +47,35 @@
     --svg-color: #000;
 }
 
+.green-bg {
+    background-color: #26D782;
+    color: #fff !important;
+}
+
+.red-bg {
+    background-color: #EE5454;
+    color: #fff !important;
+}
+
+.standard-bg {
+    background-color: #F4F6FA;
+}
+
+.field-bg {
+    background-color: var(--field-bg);
+}
+
+.subfield-text-color {
+    color: #626C7F;
+}
+
 html:has(input[type="checkbox"].toggle:checked) {
     --svg-color: #fff;
+    --bg-color: #313E51;
+    --text-color: #fff;
+    --field-bg: #3B4D66;
 }
+
 
 html {
     overflow-x: hidden;
@@ -59,6 +87,8 @@ body {
     overflow-x: clip;
     font-family: "Regular";
     background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
 }
 
 .bold-ff {
@@ -104,6 +134,15 @@ body {
 .switch-theme path {
     fill: var(--svg-color);
     transition: fill 0.3s ease-in-out;
+}
+
+.submit-btn-bg {
+    background-color: #A729F5;
+    box-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14);
+}
+
+.submit-btn-bg:is(:hover, :active, :focus-visible) {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%), var(--Purple, #A729F5);
 }
 
 input[type="checkbox"].toggle {
