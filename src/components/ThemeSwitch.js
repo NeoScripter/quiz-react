@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
+import lightThemeBg from '../assets/images/pattern-background-desktop-light.svg';
+import darkThemeBg from '../assets/images/pattern-background-desktop-dark.svg';
+
 
 function ThemeSwitch() {
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        // Initialize state from local storage
         const storedTheme = localStorage.getItem('isDarkMode');
         return storedTheme !== null ? JSON.parse(storedTheme) : false;
     });
 
-    // Update local storage whenever the state changes
     useEffect(() => {
         localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+        document.body.style.backgroundImage = isDarkMode
+            ? `url(${darkThemeBg})`
+            : `url(${lightThemeBg})`;
     }, [isDarkMode]);
 
     const handleToggle = () => {

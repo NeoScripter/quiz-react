@@ -74,6 +74,7 @@ html:has(input[type="checkbox"].toggle:checked) {
     --bg-color: #313E51;
     --text-color: #fff;
     --field-bg: #3B4D66;
+    
 }
 
 
@@ -89,6 +90,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: all 0.3s ease-in-out;
+    background-size: cover;
 }
 
 @media screen and (min-width: 600px) {
